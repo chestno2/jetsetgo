@@ -8,7 +8,7 @@ function TravelRequest() {
   const [origin, setOrigin] = useState("");
   const [destination, setDestination] = useState("");
   const [searchResult, setSearchResult] = useState([]);
-  const [loading,setLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const searchFlight = async () => {
     setLoading(true);
@@ -23,7 +23,7 @@ function TravelRequest() {
 
     setSearchResult(filteredResult);
 
-    setLoading(false)
+    setLoading(false);
   };
   const filteronPrice = () => {
     const sortedFlights = searchResult
@@ -39,15 +39,27 @@ function TravelRequest() {
   };
   return (
     <Box>
-        <Typography variant="h3" textAlign={"center"}>JetSetGo </Typography>
-        <Typography variant="subtitle2" textAlign={"center"}>Only in metro Cities </Typography>
+      <Typography variant="h3" textAlign={"center"}>
+        JetSetGo{" "}
+      </Typography>
+      <Typography variant="subtitle2" textAlign={"center"}>
+        Only in metro Cities{" "}
+      </Typography>
 
-      <Box sx={{ display: "flex", justifyContent: "space-evenly", my: 4 }}>
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "space-evenly",
+          my: 4,
+          flexDirection: { xs: "column", sm: "row" },
+        }}
+      >
         <TextField
           id="outlined-controlled"
           label="Origin"
           value={origin}
           onChange={(e) => setOrigin(e.target.value)}
+          sx={{ mb: { xs: 2, sm: 0 }, mr: { xs: 0, sm: 2 } }}
         />
 
         <TextField
@@ -55,6 +67,7 @@ function TravelRequest() {
           label="Destination"
           value={destination}
           onChange={(e) => setDestination(e.target.value)}
+          sx={{ mb: { xs: 2, sm: 0 }, mr: { xs: 0, sm: 2 } }}
         />
 
         <input
@@ -63,20 +76,30 @@ function TravelRequest() {
           name="datePicker"
           value={"2024-03-15"}
           disabled
+          sx={{
+            mb: { xs: 2, sm: 0 },
+            mr: { xs: 0, sm: 2 },
+            width: { xs: "100%", sm: "auto" },
+          
+          }}
         />
 
         <Button
           size="medium"
-          color="inherit"
+          color="info"
+          variant="outlined"
           disabled={origin && destination ? false : true}
           onClick={searchFlight}
+          sx={{
+            mt:{xs:2,sm:0}
+          }}
         >
           Search
         </Button>
       </Box>
-      <Box>
 
-      {loading ? (
+      <Box>
+        {loading ? (
           <Searchgif />
         ) : (
           <>
